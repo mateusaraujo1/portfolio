@@ -5,6 +5,14 @@ const nextConfig = {
   },
   images: {
     domains: ['media.graphassets.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        port: '',
+        pathname: '/**', // Permite qualquer caminho dentro do github.com
+      },
+    ],
   },
 }
 
