@@ -39,6 +39,10 @@ export const ExperienceItem = () => {
 
                 <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-w-[350px] mb-8">
                     <TechBadge name="React"/>
+                    <TechBadge name="React"/>
+                    <TechBadge name="React"/>
+                    <TechBadge name="React"/>
+                    <TechBadge name="React"/>
                 </div>
             </div>
 
