@@ -27,6 +27,7 @@ export const Header = () => {
                     height={49}
                     src="/images/logo.svg"
                     alt="Logo Mateus Dev"
+                    // unoptimized
                     />
                 </Link>
 
