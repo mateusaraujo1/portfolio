@@ -19,5 +19,5 @@ export type HomePageInfo = {
 }
 
 export type HomePageData = {
-    page: HomePageData
+    page: HomePageInfo
 }
