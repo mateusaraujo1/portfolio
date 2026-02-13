@@ -12,6 +12,12 @@ const nextConfig = {
         port: '',
         pathname: '/**', // Permite qualquer caminho dentro do github.com
       },
+      {
+        protocol: 'https',
+        hostname: 'us-west-2.graphassets.com',
+        port: '',
+        pathname: '/**', // Permite qualquer caminho dentro desse domínio
+      }
     ],
   },
 }
