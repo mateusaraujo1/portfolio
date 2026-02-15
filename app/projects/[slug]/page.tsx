@@ -2,6 +2,7 @@ import { PorjectDetails } from "@/app/components/pages/project/project-details";
 import { PorjectSections } from "@/app/components/pages/project/project-sections";
 import { ProjectPageData, ProjectsPageStaticData } from "@/app/types/page-info";
 import { fetchHygraphQuery } from "@/app/utils/fetch-hygraph-query";
+import { Metadata } from "next";
 
 type ProjectProps = {
     params: {
@@ -71,4 +72,25 @@ export async function generateStaticParams() {
 
     return projects;
     // return projects.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+    params: { slug }
+}: ProjectProps): Promise<Metadata> {
+    const data = await getProjectDetails(slug)
+    const project = data.project;
+
+    return {
+        title: project.title,
+        description: project.description.text,
+        openGraph: {
+            images: [
+                {
+                    url: project.thumbnail.url,
+                    width: 1200,
+                    height: 630
+                }
+            ]
+        }
+    }
 }
