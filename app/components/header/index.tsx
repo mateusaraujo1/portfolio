@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { NavItem } from "./nav-item"
+import { motion } from 'framer-motion';
 
 const NAV_ITEMS = [
     {
@@ -17,7 +18,12 @@ const NAV_ITEMS = [
 
 export const Header = () => {
     return (
-        <header className="absolute top-0 w-full z-10 h-24 flex items-center justify-center">
+        <motion.header 
+            className="absolute top-0 w-full z-10 h-24 flex items-center justify-center"
+            initial={{ top: -100 }}
+            animate={{ top: 0 }}
+            transition={{ duration: 0.5 }}
+        >
             {/* z-10: controla a ordem de empilhamento (eixo Z) dos elementos que se sobrepõem */}
             {/* h-24: altura fixa de 24 unidades (equivalente a 6rem) */}
             <div className="container flex items-center justify-between">
@@ -40,6 +46,6 @@ export const Header = () => {
                     ))}
                 </nav>
             </div>
-        </header>
+        </motion.header>
     )
 }
