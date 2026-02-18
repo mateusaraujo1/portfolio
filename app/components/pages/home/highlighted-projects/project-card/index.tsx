@@ -6,18 +6,13 @@ import { Project } from "@/app/types/projects"
 import Image from "next/image"
 import { HiArrowNarrowRight } from "react-icons/hi"
 import { motion } from "framer-motion"
-import { techBadgeAnimation } from "@/app/lib/animations"
+import { fadeUpAnimation, techBadgeAnimation } from "@/app/lib/animations"
 
 type ProjectCardProps = {
     project: Project;
 }
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
-    const animProps = {
-        initial: { opacity: 0, y: 50 },
-        whileInView: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: 50 }
-    }
 
     return (
         <motion.div 
@@ -46,7 +41,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             <div className="flex-1 lg:py-[18px]">
                 <motion.h3 
                     className="flex items-center gap-3 font-medium text-lg text-gray-50"
-                    {...animProps}
+                    {...fadeUpAnimation}
                     transition={{ duration: 0.7 }}
                 >
                     <Image 
@@ -60,7 +55,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
                 <motion.p 
                     className="text-gray-400 my-6"
-                    {...animProps}
+                    {...fadeUpAnimation}
                     transition={{ duration: 0.2, delay: 0.3 }}
                 >
                     {project.shortDescription}
