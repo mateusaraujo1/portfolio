@@ -9,19 +9,23 @@ import { useEffect, useState } from "react";
 const NAV_ITEMS = [
     { 
         label: "Home", 
-        href: "/#hero-section" 
+        href: "/#hero-section",
+        mobile: true
     },
     { 
         label: "Destaques", 
-        href: "/#highlighted-projects" 
+        href: "/#highlighted-projects" ,
+        mobile: true
     },
     { 
         label: "Experiência", 
-        href: "/#work-experience" 
+        href: "/#work-experience",
+        md: true
     },
     { 
         label: "Projetos", 
-        href: "/projects" 
+        href: "/projects",
+        mobile: true
     },
     { 
         label: "Contato", 
@@ -83,13 +87,14 @@ export const Header = () => {
           />
         </Link>
 
-        <nav className="flex items-center gap-4 sm:gap-10">
+        <nav className="flex items-center gap-10">
           {NAV_ITEMS.map((item) => (
-            <NavItem
-              key={item.href}
-              {...item}
-              activeSection={activeSection}
-            />
+            <div
+                key={item.href}
+                className={item.md ? "hidden md:block" : item.mobile ? "" : "hidden sm:block"}
+                >
+                <NavItem {...item} activeSection={activeSection} />
+            </div>
           ))}
         </nav>
       </div>
