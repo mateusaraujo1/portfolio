@@ -4,19 +4,33 @@ import Image from "next/image"
 import Link from "next/link"
 import { NavItem } from "./nav-item"
 import { motion } from 'framer-motion';
+import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
     {
         label: 'Home',
-        href: '/'
+        href: '/#hero-section'
+    },
+    {
+        label: 'Destaques',
+        href: '/#highlighted-projects'
+    },
+    {
+        label: 'Experiência',
+        href: '/#work-experience'
     },
     {
         label: 'Projetos',
         href: '/projects'
+    },
+    {
+        label: 'Contato',
+        href: '/#contact'
     }
 ]
 
 export const Header = () => {
+
     return (
         <motion.header 
             className="absolute top-0 w-full z-10 h-24 flex items-center justify-center"
@@ -31,7 +45,7 @@ export const Header = () => {
                     <Image
                     width={58}
                     height={49}
-                    src="/images/logo.svg"
+                    src="/images/logo.png"
                     alt="Logo Mateus Dev"
                     // unoptimized
                     />
@@ -41,7 +55,10 @@ export const Header = () => {
                     {/* gap-10 quando a tela for maior que sm, se não, será gap-4 */}
                     {NAV_ITEMS.map((item) => (
                         // <NavItem key={item.href} label={item.label} href={item.href} />
-                        <NavItem key={item.href} {...item} />
+                        <NavItem 
+                            key={item.href} 
+                            {...item}
+                         />
                         // Destructuring acima é equivalente ao comentário de cima
                     ))}
                 </nav>
