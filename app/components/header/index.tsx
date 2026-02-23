@@ -1,68 +1,98 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { NavItem } from "./nav-item"
-import { motion } from 'framer-motion';
+import Image from "next/image";
+import Link from "next/link";
+import { NavItem } from "./nav-item";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const NAV_ITEMS = [
-    {
-        label: 'Home',
-        href: '/#hero-section'
+    { 
+        label: "Home", 
+        href: "/#hero-section" 
     },
-    {
-        label: 'Destaques',
-        href: '/#highlighted-projects'
+    { 
+        label: "Destaques", 
+        href: "/#highlighted-projects" 
     },
-    {
-        label: 'Experiência',
-        href: '/#work-experience'
+    { 
+        label: "Experiência", 
+        href: "/#work-experience" 
     },
-    {
-        label: 'Projetos',
-        href: '/projects'
+    { 
+        label: "Projetos", 
+        href: "/projects" 
     },
-    {
-        label: 'Contato',
-        href: '/#contact'
-    }
-]
+    { 
+        label: "Contato", 
+        href: "/#contact" 
+    },
+];
 
 export const Header = () => {
+  const [activeSection, setActiveSection] = useState<string>("");
 
-    return (
-        <motion.header 
-            className="absolute top-0 w-full z-10 h-24 flex items-center justify-center"
-            initial={{ top: -100 }}
-            animate={{ top: 0 }}
-            transition={{ duration: 0.5 }}
-        >
-            {/* z-10: controla a ordem de empilhamento (eixo Z) dos elementos que se sobrepõem */}
-            {/* h-24: altura fixa de 24 unidades (equivalente a 6rem) */}
-            <div className="container flex items-center justify-between">
-                <Link href="/">
-                    <Image
-                    width={58}
-                    height={49}
-                    src="/images/logo.png"
-                    alt="Logo Mateus Dev"
-                    // unoptimized
-                    />
-                </Link>
+  useEffect(() => {
+    const sections = NAV_ITEMS
+      .filter((item) => item.href.includes("#"))
+      .map((item) => item.href.split("#")[1]);
 
-                <nav className="flex items-center gap-4 sm:gap-10"> 
-                    {/* gap-10 quando a tela for maior que sm, se não, será gap-4 */}
-                    {NAV_ITEMS.map((item) => (
-                        // <NavItem key={item.href} label={item.label} href={item.href} />
-                        <NavItem 
-                            key={item.href} 
-                            {...item}
-                         />
-                        // Destructuring acima é equivalente ao comentário de cima
-                    ))}
-                </nav>
-            </div>
-        </motion.header>
-    )
-}
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+
+            // atualiza URL sem reload
+            window.history.replaceState(
+              null,
+              "",
+              `/#${entry.target.id}`
+            );
+          }
+        });
+      },
+      {
+        rootMargin: "-40% 0px -50% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <motion.header
+      className="absolute top-0 w-full z-10 h-24 flex items-center justify-center"
+      initial={{ top: -100 }}
+      animate={{ top: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="container flex items-center justify-between">
+        <Link href="/">
+          <Image
+            width={58}
+            height={49}
+            src="/images/logo.png"
+            alt="Logo Mateus Dev"
+          />
+        </Link>
+
+        <nav className="flex items-center gap-4 sm:gap-10">
+          {NAV_ITEMS.map((item) => (
+            <NavItem
+              key={item.href}
+              {...item}
+              activeSection={activeSection}
+            />
+          ))}
+        </nav>
+      </div>
+    </motion.header>
+  );
+};
