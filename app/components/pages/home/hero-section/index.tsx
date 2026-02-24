@@ -24,7 +24,7 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
 
     return (
         <section id="hero-section" className="w-full lg:h-[755px] bg-hero-image bg-cover bg-center bg-no-repeat flex flex-col justify-end pb-10 sm:pb-32 py-32 lg:pb-[110px]">
-            <div className="container flex items-start justify-between flex-col-reverse lg:flex-row">
+            <div className="container flex items-start justify-between flex-col-reverse md:flex-row">
                 <motion.div 
                     className="w-full lg:max-w-[530px]"
                     initial={{ opacity: 0, x: -100 }}
@@ -76,7 +76,7 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 200, scale: 0.5 }}
                     transition={{ duration: 0.5 }}
-                    className="origin-center"
+                    className="origin-center w-full flex justify-center lg:justify-end"
                 >
                     <Image 
                         width={420}
