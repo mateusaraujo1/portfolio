@@ -56,7 +56,7 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
                             <HiArrowNarrowRight size={18}/>
                         </Button>
 
-                        <div className="text-2xl text-gray-600 flex items-center h-20 gap-3">
+                        <div className="text-4xl sm:text-3xl text-gray-500 flex items-center h-20 gap-10 sm:gap-4">
                             {homeInfo.socials.map((contact, index) => (
                                 <a 
                                 key={`contact-${index}`}
