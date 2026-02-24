@@ -34,13 +34,23 @@ export const NavItem = ({ label, href, activeSection }: NavItemProps) => {
     <Link
       href={href}
       onClick={handleClick}
+      aria-current={isActive ? "page" : undefined}
       className={cn(
-        "text-gray-400 flex items-center gap-2 font-medium font-mono transition-colors",
+        "relative inline-flex items-center gap-2 pb-1 font-medium font-mono transition-colors",
+        "text-gray-400",
         isActive && "text-gray-50 font-bold"
       )}
     >
       <span className="text-emerald-400">#</span>
       {label}
+
+      <span
+        aria-hidden="true"
+        className={cn(
+          "absolute left-0 -bottom-1 w-full h-[2px] bg-emerald-400 transform origin-left transition-transform duration-300 pointer-events-none",
+          isActive ? "scale-x-100" : "scale-x-0"
+        )}
+      />
     </Link>
   );
 };
