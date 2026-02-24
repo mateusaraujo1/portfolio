@@ -5,6 +5,10 @@ import { WorkExperience } from "./components/pages/home/work-experience";
 import { HomePageData } from "./types/page-info";
 import { fetchHygraphQuery } from "./utils/fetch-hygraph-query";
 
+export const metadata = {
+  title: 'Mateus Dev'
+}
+
 const getPageData = async (): Promise<HomePageData> => {
   const query = `
     query PageInfoQuery {

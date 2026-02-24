@@ -84,6 +84,7 @@ export const HeroSection = ({ homeInfo }: HeroSectionProps) => {
                         src="https://github.com/mateusaraujo1.png"
                         alt="Mateus Araújo - Desenvolvedor Full Stack"
                         className="rounded-full w-[300px] h-[300px] lg:w-[420px] lg:h-[404px] mb-6 lg:mb-0 shadow-2xl object-cover"
+                        unoptimized
                     />
                 </motion.div>
             </div>
