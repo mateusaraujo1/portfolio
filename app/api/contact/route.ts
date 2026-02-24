@@ -4,7 +4,7 @@ import { z } from "zod";
 
 const bodySchema = z.object({
     name: z.string(),
-    email: z.string().email(),
+    phone: z.string(),
     message: z.string()
 })
 
@@ -13,7 +13,7 @@ const WEBHOOK_URL = process.env.WEBHOOK_URL!;
 export async function POST(request:Request) {
     try {
         const body = await request.json()
-        const { name, email, message} = bodySchema.parse(body)
+        const { name, phone, message} = bodySchema.parse(body)
 
         const messageData = {
             embeds:
@@ -31,8 +31,8 @@ export async function POST(request:Request) {
                         },
                         {
                         "id": 486428737,
-                        "name": "Email",
-                        "value": email,
+                        "name": "WhatsApp",
+                        "value": phone,
                         "inline": true
                         }
                     ]

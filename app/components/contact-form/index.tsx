@@ -10,12 +10,20 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion"
 import { fadeUpAnimation } from "@/app/lib/animations";
+import { formatPhone } from "@/app/lib/phone";
 
 const contactFormSchema = z.object({
-    name: z.string().min(3).max(100),
-    email: z.string().email(),
-    message: z.string().min(1).max(500)
-})
+  name: z.string().min(3).max(100),
+
+  phone: z
+    .string()
+    .regex(
+      /^(\+55\s?)?(\(?\d{2}\)?\s?)?(9\d{4})-?\d{4}$/,
+      "Número inválido"
+    ),
+
+  message: z.string().min(1).max(500),
+});
 
 type ContactFormData = z.infer<typeof contactFormSchema>
 
@@ -59,10 +67,14 @@ export const ContactForm = () => {
                         {...register('name')}    
                     />
                     <input 
-                        placeholder="Email"
-                        type="email"
+                        placeholder="WhatsApp"
+                        type="tel"
                         className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
-                        {...register('email')}    
+                        {...register("phone", {
+                            onChange: (e) => {
+                            e.target.value = formatPhone(e.target.value);
+                            },
+                        })}   
                     />
                     <textarea 
                         placeholder="Mensagem"
