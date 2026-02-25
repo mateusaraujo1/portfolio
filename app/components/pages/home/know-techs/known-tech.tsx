@@ -11,7 +11,6 @@ export const KnownTech = ({ tech }: KnownTechProps) => {
     return (
         <div className="p-6 rounded-lg bg-gray-600/20 text-gray-400 flex flex-col gap-2 hover:text-emerald-500 hover:bg-gray-600/30 transition-all duration-300 group relative items-center justify-center">
             <div className="flex flex-col items-center justify-between">
-                {/* <p className="font-medium">{tech.name}</p> */}
                 <CMSIcon icon={tech.iconSvg} />
             </div>
 
