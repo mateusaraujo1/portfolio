@@ -16,12 +16,12 @@ const NAV_ITEMS = [
     { 
         label: "Destaques", 
         href: "/#highlighted-projects" ,
-        mobile: true
+        md: true
     },
     { 
         label: "Experiência", 
         href: "/#work-experience",
-        md: true
+        lg: true
     },
     { 
         label: "Projetos", 
@@ -100,7 +100,9 @@ export const Header = () => {
             <div
               key={item.href}
               className={
-                item.md
+                  item.lg
+                  ? "hidden lg:block"
+                  : item.md
                   ? "hidden md:block"
                   : item.mobile
                   ? "" // visível em todas as telas quando mobile: true
