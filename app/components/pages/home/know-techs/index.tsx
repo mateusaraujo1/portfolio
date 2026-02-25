@@ -18,7 +18,6 @@ export const KnownTechs = ({ techs }: KnownTechsProps) => {
             />
 
             <div className="grid grid-cols-[repeat(auto-fit,minmax(204px,1fr))] gap-3 mt-[60px]">
-                {/* se repete até um valor x */}
                 {techs?.map((tech, index) => (
                     <motion.div 
                         key={tech.name}
