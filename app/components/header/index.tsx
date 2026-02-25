@@ -24,13 +24,13 @@ const NAV_ITEMS = [
         lg: true
     },
     { 
+        label: "Contato", 
+        href: "/#contact" 
+    },
+    { 
         label: "Projetos", 
         href: "/projects",
         mobile: true
-    },
-    { 
-        label: "Contato", 
-        href: "/#contact" 
     },
 ];
 
@@ -60,6 +60,12 @@ export const Header = () => {
           // monta a URL corretamente sobre a rota atual,
           // garantindo a barra antes do hash (e sem barras duplicadas)
           const currentPath = window.location.pathname || "/";
+
+          if (id === "hero-section") {
+            window.history.replaceState(null, "", currentPath);
+            return;
+          }
+
           const base = currentPath === "/" ? "" : currentPath.replace(/\/+$/, "");
           const newUrl = base === "" ? `/#${id}` : `${base}/#${id}`;
 
